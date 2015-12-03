@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		9C9304881BFB65F200DEE990 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9304871BFB65F200DEE990 /* AppDelegate.swift */; };
-		9C93048A1BFB65F200DEE990 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9304891BFB65F200DEE990 /* ViewController.swift */; };
 		9C93048D1BFB65F200DEE990 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C93048B1BFB65F200DEE990 /* Main.storyboard */; };
 		9C93048F1BFB65F200DEE990 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C93048E1BFB65F200DEE990 /* Assets.xcassets */; };
 		9C9304921BFB65F200DEE990 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9304901BFB65F200DEE990 /* LaunchScreen.storyboard */; };
 		9C93049D1BFB65F200DEE990 /* AwareShpperv2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C93049C1BFB65F200DEE990 /* AwareShpperv2Tests.swift */; };
 		9C9304A81BFB65F200DEE990 /* AwareShpperv2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9304A71BFB65F200DEE990 /* AwareShpperv2UITests.swift */; };
+		9C9304B81BFB680200DEE990 /* ProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9304B71BFB680200DEE990 /* ProductTableViewController.swift */; };
+		9C9304BA1BFB684400DEE990 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9304B91BFB684400DEE990 /* ProductTableViewCell.swift */; };
+		9C9304C01BFB98C300DEE990 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 9C9304BF1BFB98C300DEE990 /* Podfile */; };
+		9C9304C21BFB9A6F00DEE990 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9304C11BFB9A6F00DEE990 /* SwiftyJSON.framework */; };
+		9C9304C61BFBA3F000DEE990 /* ProductDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9304C51BFBA3F000DEE990 /* ProductDetailTableViewController.swift */; };
+		9C9304C81BFBA43C00DEE990 /* ProductDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9304C71BFBA43C00DEE990 /* ProductDetailTableViewCell.swift */; };
+		9C9304CA1BFBB3B600DEE990 /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9304C91BFBB3B600DEE990 /* RestApiManager.swift */; };
+		9CF225101C102FDA00591E06 /* SwiftLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2250F1C102FDA00591E06 /* SwiftLoading.swift */; };
+		E0EB33EC2DB10857E31396B1 /* Pods_AwareShpperv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7301E04D51719CE61AD4573 /* Pods_AwareShpperv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		814CF620BB8B8DA0E1F28088 /* Pods-AwareShpperv2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwareShpperv2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AwareShpperv2/Pods-AwareShpperv2.debug.xcconfig"; sourceTree = "<group>"; };
 		9C9304841BFB65F200DEE990 /* AwareShpperv2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwareShpperv2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9304871BFB65F200DEE990 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9C9304891BFB65F200DEE990 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9C93048C1BFB65F200DEE990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C93048E1BFB65F200DEE990 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C9304911BFB65F200DEE990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +55,16 @@
 		9C9304A31BFB65F200DEE990 /* AwareShpperv2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwareShpperv2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9304A71BFB65F200DEE990 /* AwareShpperv2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwareShpperv2UITests.swift; sourceTree = "<group>"; };
 		9C9304A91BFB65F200DEE990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C9304B71BFB680200DEE990 /* ProductTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductTableViewController.swift; path = ../ProductTableViewController.swift; sourceTree = "<group>"; };
+		9C9304B91BFB684400DEE990 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductTableViewCell.swift; path = ../ProductTableViewCell.swift; sourceTree = "<group>"; };
+		9C9304BF1BFB98C300DEE990 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		9C9304C11BFB9A6F00DEE990 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		9C9304C51BFBA3F000DEE990 /* ProductDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailTableViewController.swift; sourceTree = "<group>"; };
+		9C9304C71BFBA43C00DEE990 /* ProductDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailTableViewCell.swift; sourceTree = "<group>"; };
+		9C9304C91BFBB3B600DEE990 /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
+		9CF2250F1C102FDA00591E06 /* SwiftLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLoading.swift; sourceTree = "<group>"; };
+		B7301E04D51719CE61AD4573 /* Pods_AwareShpperv2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwareShpperv2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F42C9B791A6BCEC68170976F /* Pods-AwareShpperv2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwareShpperv2.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwareShpperv2/Pods-AwareShpperv2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C9304C21BFB9A6F00DEE990 /* SwiftyJSON.framework in Frameworks */,
+				E0EB33EC2DB10857E31396B1 /* Pods_AwareShpperv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,13 +94,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37C528A49DC9FE4507955172 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C9304C11BFB9A6F00DEE990 /* SwiftyJSON.framework */,
+				B7301E04D51719CE61AD4573 /* Pods_AwareShpperv2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B103D6B38A8F693992D7831 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				814CF620BB8B8DA0E1F28088 /* Pods-AwareShpperv2.debug.xcconfig */,
+				F42C9B791A6BCEC68170976F /* Pods-AwareShpperv2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9C93047B1BFB65F100DEE990 = {
 			isa = PBXGroup;
 			children = (
+				9C9304BF1BFB98C300DEE990 /* Podfile */,
 				9C9304861BFB65F200DEE990 /* AwareShpperv2 */,
 				9C93049B1BFB65F200DEE990 /* AwareShpperv2Tests */,
 				9C9304A61BFB65F200DEE990 /* AwareShpperv2UITests */,
 				9C9304851BFB65F200DEE990 /* Products */,
+				3B103D6B38A8F693992D7831 /* Pods */,
+				37C528A49DC9FE4507955172 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,11 +139,16 @@
 			isa = PBXGroup;
 			children = (
 				9C9304871BFB65F200DEE990 /* AppDelegate.swift */,
-				9C9304891BFB65F200DEE990 /* ViewController.swift */,
+				9C9304B91BFB684400DEE990 /* ProductTableViewCell.swift */,
+				9C9304B71BFB680200DEE990 /* ProductTableViewController.swift */,
 				9C93048B1BFB65F200DEE990 /* Main.storyboard */,
 				9C93048E1BFB65F200DEE990 /* Assets.xcassets */,
 				9C9304901BFB65F200DEE990 /* LaunchScreen.storyboard */,
 				9C9304931BFB65F200DEE990 /* Info.plist */,
+				9C9304C51BFBA3F000DEE990 /* ProductDetailTableViewController.swift */,
+				9CF2250F1C102FDA00591E06 /* SwiftLoading.swift */,
+				9C9304C71BFBA43C00DEE990 /* ProductDetailTableViewCell.swift */,
+				9C9304C91BFBB3B600DEE990 /* RestApiManager.swift */,
 			);
 			path = AwareShpperv2;
 			sourceTree = "<group>";
@@ -132,9 +178,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C9304AC1BFB65F200DEE990 /* Build configuration list for PBXNativeTarget "AwareShpperv2" */;
 			buildPhases = (
+				3BEE35ED8DE4CAC90E739F6D /* Check Pods Manifest.lock */,
 				9C9304801BFB65F200DEE990 /* Sources */,
 				9C9304811BFB65F200DEE990 /* Frameworks */,
 				9C9304821BFB65F200DEE990 /* Resources */,
+				31ACBD2E968227730E7368BC /* Embed Pods Frameworks */,
+				C987A9D9FE8903518A12DC63 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -231,6 +280,7 @@
 			files = (
 				9C9304921BFB65F200DEE990 /* LaunchScreen.storyboard in Resources */,
 				9C93048F1BFB65F200DEE990 /* Assets.xcassets in Resources */,
+				9C9304C01BFB98C300DEE990 /* Podfile in Resources */,
 				9C93048D1BFB65F200DEE990 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,13 +301,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		31ACBD2E968227730E7368BC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwareShpperv2/Pods-AwareShpperv2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3BEE35ED8DE4CAC90E739F6D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C987A9D9FE8903518A12DC63 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwareShpperv2/Pods-AwareShpperv2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9C9304801BFB65F200DEE990 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C93048A1BFB65F200DEE990 /* ViewController.swift in Sources */,
+				9C9304C61BFBA3F000DEE990 /* ProductDetailTableViewController.swift in Sources */,
+				9C9304B81BFB680200DEE990 /* ProductTableViewController.swift in Sources */,
+				9C9304CA1BFBB3B600DEE990 /* RestApiManager.swift in Sources */,
 				9C9304881BFB65F200DEE990 /* AppDelegate.swift in Sources */,
+				9CF225101C102FDA00591E06 /* SwiftLoading.swift in Sources */,
+				9C9304C81BFBA43C00DEE990 /* ProductDetailTableViewCell.swift in Sources */,
+				9C9304BA1BFB684400DEE990 /* ProductTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,8 +500,13 @@
 		};
 		9C9304AD1BFB65F200DEE990 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 814CF620BB8B8DA0E1F28088 /* Pods-AwareShpperv2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = AwareShpperv2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.umorujoseph.AwareShpperv2;
@@ -408,8 +516,13 @@
 		};
 		9C9304AE1BFB65F200DEE990 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F42C9B791A6BCEC68170976F /* Pods-AwareShpperv2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = AwareShpperv2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.umorujoseph.AwareShpperv2;
@@ -484,6 +597,7 @@
 				9C9304AE1BFB65F200DEE990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C9304AF1BFB65F200DEE990 /* Build configuration list for PBXNativeTarget "AwareShpperv2Tests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +606,7 @@
 				9C9304B11BFB65F200DEE990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C9304B21BFB65F200DEE990 /* Build configuration list for PBXNativeTarget "AwareShpperv2UITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +615,7 @@
 				9C9304B41BFB65F200DEE990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,89 +7,104 @@
 //
 
 import UIKit
+import SwiftyJSON
+import CoreLocation
 
-class ProductTableViewController: UITableViewController {
+class ProductTableViewController: UITableViewController,CLLocationManagerDelegate{
+    let locationManager = CLLocationManager()
+    let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, identifier: "Estimote")
+    let stores = [
+        8175: "Aldi1",
+        22782: "Aldi2"
+    ]
+    
+    var presentStore = String()
+    var products1 = [String]()
+    var products2 = [String]()
+    var shopsAvailable = [String]()
+    
+    var productCatgories = [String]()
+    var productCatImages = [String]()
+    var attractionNames = [String]()
+    var webAddresses = [String]()
+    var goods = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        productCatgories = ["BEVERAGES", "BREAD AND SANDWICHES",
+            "DAIRY PRODUCTS", "PAPER GOODS"]
+        productCatImages = ["beverages.jpg", "bread_bakery.jpg",
+            "dairy_products.jpg", "paper_goods.jpg"]
+        goods = ["Beverages", "Bread_Bakery",
+            "Dairy_Products", "Paper_Goods"]
+        locationManager.delegate = self;
+        locationManager.requestWhenInUseAuthorization()
+        if(CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse){
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
+        locationManager.startRangingBeaconsInRegion(region)
+        
+        
+        tableView.estimatedRowHeight = 50
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
+    
+    func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+        let knownBeacons = beacons.filter{ $0.proximity != CLProximity.Unknown }
+        if (knownBeacons.count > 0) {
+            let closestBeacon = knownBeacons[0] as CLBeacon!
+            if(closestBeacon.major.integerValue > 100){
+            presentStore = self.stores[closestBeacon.minor.integerValue]!
+            }
+        }
+        
+    }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {        return productCatgories.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        
+        let cell =
+            self.tableView.dequeueReusableCellWithIdentifier(
+                "ProductTableCell", forIndexPath: indexPath)
+                as! ProductTableViewCell
+            
+            let row = indexPath.row
+            cell.productLabel.font =
+                UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+            cell.productLabel.text = productCatgories[row]
+            cell.productImage.image = UIImage(named: productCatImages[row])
+            return cell
+        
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "ShowProductDetails" {
+            let detailViewController = segue.destinationViewController
+                as! ProductDetailTableViewController
+            
+            let myIndexPath = self.tableView.indexPathForSelectedRow!
+            let row = myIndexPath.row
+            detailViewController.webSite = goods[row]
+            detailViewController.presentStore = presentStore
+        }
     }
-    */
 
 }

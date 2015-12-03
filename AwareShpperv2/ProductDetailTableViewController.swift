@@ -7,89 +7,182 @@
 //
 
 import UIKit
+import SwiftyJSON
+import CoreLocation
 
-class ProductDetailTableViewController: UITableViewController {
+class ProductDetailTableViewController: UITableViewController{
+    var webSite: String?
+    var presentStore: String?
+    var attractionNames = [String]()
+    var shopsAvailable = [String]()
+    var productsAvailShop = [String]()
+    var ProductName = [String]()
+    var ProductPrice = [String]()
+    var ProductDiscount = [String]()
+    
+    
+    
+    func getShops(){
+        RestApiManager.sharedInstance.getShops{json -> Void in
+            let numberOfShops = json["shops"].count as Int
+            for count in 1...numberOfShops{
+                var location2 = "Aldi"
+                location2 += "\(count)"
+                self.shopsAvailable.append(location2)
+            }
+        }
+    }
+    
+    func getproductsAvailShop(storeLocaton: String){
+        RestApiManager.sharedInstance.getShops{json -> Void in
+            let numberOfproductsAvailShop = json["shops"][storeLocaton]["Product"].count as Int
+            var p = 0
+            for _ in 1...numberOfproductsAvailShop{
+                let prod = json["shops"][storeLocaton]["Product"][p].string as String!
+                self.productsAvailShop.append(prod)
+                p++
+            }
+        }
+    }
+    
+    func getProducts(productType: String){
+        if(productType == "Beverages"){
+        RestApiManager.sharedInstance.getBeverages{json -> Void in
+            let numberOfProducts = json[productType].count as Int
+            var x = 0
+            for _ in 1...numberOfProducts{
+                let name = json[productType][x]["name"].string as String!
+                let price = json[productType][x]["price"].double as Double!
+                let disocount = json[productType][x]["discount"].double as Double!
+                
+                let a = String(price)
+                let b = String(disocount)
+                
+                self.ProductName.append(name)
+                self.ProductPrice.append(a)
+                self.ProductDiscount.append(b)
+                x++
+            }
+        }
+        }else if(productType == "Bread_Bakery"){
+            RestApiManager.sharedInstance.getBreadBakery{json -> Void in
+                let numberOfProducts = json[productType].count as Int
+                var x = 0
+                for _ in 1...numberOfProducts{
+                    let name = json[productType][x]["name"].string as String!
+                    let price = json[productType][x]["price"].double as Double!
+                    let disocount = json[productType][x]["discount"].double as Double!
+                    
+                    let c = String(price)
+                    let d = String(disocount)
+                    
+                    self.ProductName.append(name)
+                    self.ProductPrice.append(c)
+                    self.ProductDiscount.append(d)
+                    x++                }
+            }
+        }else if(productType == "Dairy_Products"){
+            RestApiManager.sharedInstance.getDairyProducts{json -> Void in
+                let numberOfProducts = json[productType].count as Int
+                var x = 0
+                for _ in 1...numberOfProducts{
+                    let name = json[productType][x]["name"].string as String!
+                    let price = json[productType][x]["price"].double as Double!
+                    let disocount = json[productType][x]["discount"].double as Double!
+                    
+                    let e = String(price)
+                    let f = String(disocount)
+                    
+                    self.ProductName.append(name)
+                    self.ProductPrice.append(e)
+                    self.ProductDiscount.append(f)
+                    x++
+                }
+            }
+        }else if(productType == "Paper_Goods"){
+            RestApiManager.sharedInstance.getPaperGoods{json -> Void in
+                let numberOfProducts = json[productType].count as Int
+                var x = 0
+                for _ in 1...numberOfProducts{
+                    let name = json[productType][x]["name"].string as String!
+                    let price = json[productType][x]["price"].double as Double!
+                    let disocount = json[productType][x]["discount"].double as Double!
+                    
+                    let g = String(price)
+                    let h = String(disocount)
+                    
+                    self.ProductName.append(name)
+                    self.ProductPrice.append(g)
+                    self.ProductDiscount.append(h)
+                    x++                }
+            }
+        }else{
+            print("wrong segue")
+        }
+    }
+    
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        getproductsAvailShop(presentStore!)
+        getShops()
+        let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            SwiftLoading().showLoading()
+            if self.productsAvailShop.contains(self.webSite!) {
+                self.getProducts(self.webSite!)
+            }else{
+                self.ProductName.append("Currently not available in this store")
+                self.ProductPrice.append("")
+                self.ProductDiscount.append("")
+            }
+            
+            SwiftLoading().hideLoading()
+        })
+        
+        var timer1 = NSTimer()
+        timer1 = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "view1234", userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+            let a = ProductName.count
+            
+            return a
+
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell =
+        self.tableView.dequeueReusableCellWithIdentifier(
+            "ProductDetailTableCell", forIndexPath: indexPath)
+            as! ProductDetailTableViewCell
+        
+        let row = indexPath.row
+        cell.productLabel.font =
+            UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        cell.productLabel.text = ProductName[row]
+        cell.priceLabel.text = ProductPrice[row]
+        cell.discountPriceLabel.text = ProductDiscount[row]
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func view1234() {
+        self.tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
