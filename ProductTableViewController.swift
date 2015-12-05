@@ -60,8 +60,9 @@ class ProductTableViewController: UITableViewController,CLLocationManagerDelegat
         let knownBeacons = beacons.filter{ $0.proximity != CLProximity.Unknown }
         if (knownBeacons.count > 0) {
             let closestBeacon = knownBeacons[0] as CLBeacon!
-            if(closestBeacon.major.integerValue > 100){
-            presentStore = self.stores[closestBeacon.minor.integerValue]!
+            let minor = closestBeacon.minor.integerValue as Int
+            if let val = self.stores[minor]{
+            presentStore = val
             }
         }
         
@@ -103,7 +104,8 @@ class ProductTableViewController: UITableViewController,CLLocationManagerDelegat
             let myIndexPath = self.tableView.indexPathForSelectedRow!
             let row = myIndexPath.row
             detailViewController.webSite = goods[row]
-            detailViewController.presentStore = presentStore
+            print(presentStore)
+            detailViewController.presentStore1 = presentStore
         }
     }
 

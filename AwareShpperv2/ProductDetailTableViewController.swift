@@ -12,7 +12,7 @@ import CoreLocation
 
 class ProductDetailTableViewController: UITableViewController{
     var webSite: String?
-    var presentStore: String?
+    var presentStore1: String?
     var attractionNames = [String]()
     var shopsAvailable = [String]()
     var productsAvailShop = [String]()
@@ -126,24 +126,24 @@ class ProductDetailTableViewController: UITableViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getproductsAvailShop(presentStore!)
+        getproductsAvailShop(presentStore1!)
         getShops()
         let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+        SwiftLoading().showLoading()
         dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-            SwiftLoading().showLoading()
             if self.productsAvailShop.contains(self.webSite!) {
                 self.getProducts(self.webSite!)
+                SwiftLoading().hideLoading()
             }else{
                 self.ProductName.append("Currently not available in this store")
                 self.ProductPrice.append("")
                 self.ProductDiscount.append("")
+                SwiftLoading().hideLoading()
             }
-            
-            SwiftLoading().hideLoading()
         })
         
         var timer1 = NSTimer()
-        timer1 = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "view1234", userInfo: nil, repeats: true)
+        timer1 = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "view1234", userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
